@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { CardMedia, Container } from "@mui/material";
+import { Container } from "@mui/material";
 import Button from '@mui/material/Button';
-import { Link } from "react-router-dom";
+
 
 function TagsById() {
     const [tagsByID, setTagByID] = useState([])
@@ -30,8 +29,6 @@ function TagsById() {
             return (tagbyid, postt)
         }
         fetchCategoryById()
-        console.log(tagsByID)
-        console.log(PostByCat)
     }, []);
 
     // const filtCate = categoryByID.filter((item) => item.id === id)

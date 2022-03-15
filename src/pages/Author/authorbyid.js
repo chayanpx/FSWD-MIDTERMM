@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { CardMedia, Container } from "@mui/material";
-import Button from '@mui/material/Button';
 
 function AuthorById() {
     const [authorByID, setAuthorByID] = useState([])
@@ -17,13 +14,10 @@ function AuthorById() {
         const fetchAuthorById = async () => {
             const userRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/users?${id}`)
             const authorbyid = await userRes.json()
-            // const postResponse = await fetch('https://fswd-wp.devnss.com/wp-json/wp/v2/users/' + id)
-            // const postById = await postResponse.json()
             setAuthorByID(authorbyid)
             return authorbyid
         }
         fetchAuthorById()
-        console.log(authorByID)
     }, []);
 
     const filtAuthor = authorByID.filter((item) => item.id === id)
@@ -49,14 +43,6 @@ function AuthorById() {
                         </CardContent>
                     </Card>
                 )}
-                {/* <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-            >
-                authorrrr!
-            </Typography> */}
             </Grid>
         </Container>
     )

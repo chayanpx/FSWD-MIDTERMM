@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -23,7 +22,6 @@ function Author() {
             return authors
         }
         fetchBlogAuthor()
-        console.log(blogAuthor)
     }, []);
 
     return (
@@ -49,14 +47,6 @@ function Author() {
                         </CardActions>
                     </Card>
                 )}
-                {/* <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
-            >
-                authorrrr!
-            </Typography> */}
             </Grid>
         </Container>
     )
