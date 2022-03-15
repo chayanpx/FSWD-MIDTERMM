@@ -9,8 +9,8 @@ import { CardMedia, Container } from "@mui/material";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 
-function CategoryById() {
-    const [categoryByID, setCategoryByID] = useState([])
+function TagsById() {
+    const [tagsByID, setTagByID] = useState([])
     const [PostByCat, setPostByCat] = useState([])
     const splitUrl = window.location.href.split('/')
     const id = parseInt(splitUrl[4])
@@ -21,21 +21,21 @@ function CategoryById() {
 
     useEffect(() => {
         const fetchCategoryById = async () => {
-            const catRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories?${id}`)
-            const catbyid = await catRes.json()
+            const tagRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/tags?${id}`)
+            const tagbyid = await tagRes.json()
             const postRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/posts`)
             const postt = await postRes.json()
-            setCategoryByID(catbyid, id)
+            setTagByID(tagbyid, id)
             setPostByCat(postt)
-            return (catbyid, postt)
+            return (tagbyid, postt)
         }
         fetchCategoryById()
-        console.log(categoryByID)
+        console.log(tagsByID)
         console.log(PostByCat)
     }, []);
 
     // const filtCate = categoryByID.filter((item) => item.id === id)
-    const filtPost = PostByCat.filter((item) => item.categories.includes(id))
+    const filtPost = PostByCat.filter((item) => item.tags.includes(id))
 
     return (
         <Container>
@@ -60,4 +60,4 @@ function CategoryById() {
     )
 }
 
-export default CategoryById
+export default TagsById
