@@ -30,21 +30,21 @@ function Category() {
     return (
         <Container>
             <Grid justifyContent='center'>
+                <Typography>
+                    Categories
+                </Typography>
                 {categories.map((cate, index) =>
-                    <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
+                    <Card key={index} sx={{ display: 'inline-flex', flexWrap: 'wrap', marginTop: '10px',width: '100%' }}>
                         <CardContent>
-                            <Typography variant="h5" component="div">
+                            <Typography 
+                                variant="h5" 
+                                component="div"
+                                curser="pointer"
+                                onClick={() => goToPost(cate.id)}
+                            >
                                 {cate.name}
                             </Typography>
                         </CardContent>
-                        <CardActions>
-                            <Button 
-                                size="small" 
-                                onClick={() => goToPost(cate.id)}
-                            >
-                                Click HERE
-                            </Button>
-                        </CardActions>
                     </Card>
                 )}
                 {/* <Typography

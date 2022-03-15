@@ -15,6 +15,10 @@ function CategoryById() {
     const splitUrl = window.location.href.split('/')
     const id = parseInt(splitUrl[4])
 
+    const goToPost = (id) => {
+        window.location.href = `/posts/${id}`
+    }
+
     useEffect(() => {
         const fetchCategoryById = async () => {
             const catRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories?${id}`)
@@ -46,9 +50,9 @@ function CategoryById() {
                                 <div dangerouslySetInnerHTML={{ __html: post.content.rendered }}></div>
                             </Typography>
                         </CardContent>
-                        {/* <CardActions>
-                                <Button size="small" onClick={() => goToProfile(authr.id)}>Visit Author's Page</Button>
-                            </CardActions> */}
+                        <CardActions>
+                            <Button size="medium" onClick={() => goToPost(post.id)}>Read More</Button>
+                        </CardActions>
                     </Card>
                 )
                 }

@@ -1,4 +1,4 @@
-#FSWD-MIDTERM-mini-project
+# FSWD-MIDTERM-mini-project
 
 ## Before Anything
 
@@ -8,6 +8,8 @@ or
 
 `yarn`
 
-### `yarn start`
+## After That
 
-Then open [http://localhost:3000](http://localhost:3000).
+`yarn start`
+
+Then open [http://localhost:3000](http://localhost:3000)
