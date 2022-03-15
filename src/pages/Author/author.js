@@ -12,7 +12,7 @@ function Author() {
     const [blogAuthor, setBlogAuthor] = useState([])
 
     const goToProfile = (id) => {
-        window.location = `/author/${id}`
+        window.location.href = `/author/${id}`
     }
 
     useEffect(() => {
@@ -30,7 +30,7 @@ function Author() {
         <Container>
             <Grid justifyContent='center'>
                 {blogAuthor.map((authr, index) =>
-                    <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
+                    <Card key={index} sx={{ display:'inline-flex', margin: '20px', width: '50%' }}>
                         <CardContent>
                             <Typography variant="h5" component="div">
                                 {authr.slug}

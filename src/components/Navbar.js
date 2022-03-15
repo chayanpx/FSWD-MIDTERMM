@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink } from 'react-router-dom';
 
-const pages = ['home', 'content', 'categories', 'author'];
+const pages = ['home', 'categories', 'author'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {

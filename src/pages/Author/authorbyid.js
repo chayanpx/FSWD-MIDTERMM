@@ -10,12 +10,12 @@ import Button from '@mui/material/Button';
 
 function AuthorById() {
     const [authorByID, setAuthorByID] = useState([])
+    const splitUrl = window.location.href.split('/')
+    const id = parseInt(splitUrl[4])
 
     useEffect(() => {
         const fetchAuthorById = async () => {
-            const splitUrl = window.location.href.split('/')
-            const id = parseInt(splitUrl[4])
-            const userRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/users/${id}`)
+            const userRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/users?${id}`)
             const authorbyid = await userRes.json()
             // const postResponse = await fetch('https://fswd-wp.devnss.com/wp-json/wp/v2/users/' + id)
             // const postById = await postResponse.json()
@@ -26,11 +26,13 @@ function AuthorById() {
         console.log(authorByID)
     }, []);
 
+    const filtAuthor = authorByID.filter((item) => item.id === id)
+
     return (
         <Container>
             <Grid justifyContent='center'>
-                {authorByID.map((authr, index) =>
-                    <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
+                {filtAuthor.map((authr, index) =>
+                    <Card key={index} sx={{ margin: '20px', width: '100%' }}>
                         <CardContent>
                             <Typography variant="h5" component="div">
                                 {authr.slug}
@@ -39,14 +41,12 @@ function AuthorById() {
                                 {authr.name}
                             </Typography>
                             <CardMedia
+                                sx={{width: '100px'}}
                                 component="img"
                                 image={Object.values(authr.avatar_urls)[2]}
                                 alt="profile"
                             />
                         </CardContent>
-                        <CardActions>
-                            <Button size="small">Visit Author's Page</Button>
-                        </CardActions>
                     </Card>
                 )}
                 {/* <Typography

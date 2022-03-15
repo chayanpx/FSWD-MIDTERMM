@@ -11,38 +11,47 @@ import { Link } from "react-router-dom";
 
 function CategoryById() {
     const [categoryByID, setCategoryByID] = useState([])
+    const [PostByCat, setPostByCat] = useState([])
+    const splitUrl = window.location.href.split('/')
+    const id = parseInt(splitUrl[4])
 
     useEffect(() => {
         const fetchCategoryById = async () => {
-            const splitUrl = window.location.href.split('/')
-            const id = parseInt(splitUrl[4])
-            const cateRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories/${id}`)
-            const catebyid = await cateRes.json()
-            setCategoryByID(catebyid)
-            return catebyid
+            const catRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories?${id}`)
+            const catbyid = await catRes.json()
+            const postRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/posts`)
+            const postt = await postRes.json()
+            setCategoryByID(catbyid, id)
+            setPostByCat(postt)
+            return (catbyid, postt)
         }
         fetchCategoryById()
         console.log(categoryByID)
+        console.log(PostByCat)
     }, []);
+
+    // const filtCate = categoryByID.filter((item) => item.id === id)
+    const filtPost = PostByCat.filter((item) => item.categories == id)
 
     return (
         <Container>
             <Grid justifyContent='center'>
-                {categoryByID.map((cate, index) =>
+                {filtPost.map((post, index) =>
                     <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
                         <CardContent>
                             <Typography variant="h5" component="div">
-                                {cate.id}
+                                {post.title.rendered}
                             </Typography>
                             <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                {cate.name}
+                                <div dangerouslySetInnerHTML={{ __html: post.content.rendered }}></div>
                             </Typography>
                         </CardContent>
                         {/* <CardActions>
-                            <Button size="small" onClick={() => goToProfile(authr.id)}>Visit Author's Page</Button>
-                        </CardActions> */}
+                                <Button size="small" onClick={() => goToProfile(authr.id)}>Visit Author's Page</Button>
+                            </CardActions> */}
                     </Card>
-                )}
+                )
+                }
                 {/* <Typography
                 variant="h6"
                 noWrap

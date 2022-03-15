@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./home.scss";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
@@ -11,6 +10,10 @@ import Button from '@mui/material/Button';
 
 function Home() {
     const [posts, setPost] = useState([])
+
+    const goToPost = (id) => {
+        window.location.href = `/posts/${id}`
+    }
 
     useEffect(() => {
         const fetchBlogAuthor = async () => {
@@ -37,7 +40,7 @@ function Home() {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="medium">Read More</Button>
+                            <Button size="medium" onClick={() => goToPost(item.id)}>Read More</Button>
                         </CardActions>
                     </Card>
                 )}

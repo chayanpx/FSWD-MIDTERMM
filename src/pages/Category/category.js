@@ -42,7 +42,7 @@ function Category() {
                                 size="small" 
                                 onClick={() => goToPost(cate.id)}
                             >
-                                Click here or wherever
+                                Click HERE
                             </Button>
                         </CardActions>
                     </Card>
