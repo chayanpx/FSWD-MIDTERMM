@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React from "react";
+import Navbar from './components/Navbar'
+import {
+    BrowserRouter as Router,
+    useRoutes,
+} from "react-router-dom";
 import './App.css';
+import Home from "./pages/Home/home";
+import Content from "./pages/Content/content";
+import Category from "./pages/Category/category";
+import Author from "./pages/Author/author";
+import AuthorById from "./pages/Author/authorbyid";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    let routes = useRoutes([
+        { path: "/Home", element: <Home /> },
+        { path: "/content", element: <Content /> },
+        { path: "/categories", element: <Category /> },
+        { path: "/author", element: <Author /> },
+        { path: "/author/:id", element: <AuthorById /> },
+    ]);
+    return routes;
+};
+
+const realApp = () => {
+    return (
+        <Router>
+            <Navbar />
+            <App />
+        </Router>
+    )
 }
-
-export default App;
+export default realApp;
