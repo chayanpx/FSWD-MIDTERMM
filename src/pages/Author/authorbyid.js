@@ -14,7 +14,7 @@ function AuthorById() {
     useEffect(() => {
         const fetchAuthorById = async () => {
             const splitUrl = window.location.href.split('/')
-            const id = splitUrl[4]
+            const id = parseInt(splitUrl[4])
             const userRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/users/${id}`)
             const authorbyid = await userRes.json()
             // const postResponse = await fetch('https://fswd-wp.devnss.com/wp-json/wp/v2/users/' + id)
@@ -33,20 +33,20 @@ function AuthorById() {
                     <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
                         <CardContent>
                             <Typography variant="h5" component="div">
-                                {authr.name}
+                                {authr.slug}
                             </Typography>
-                            {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                 {authr.name}
                             </Typography>
                             <CardMedia
                                 component="img"
                                 image={Object.values(authr.avatar_urls)[2]}
                                 alt="profile"
-                            /> */}
+                            />
                         </CardContent>
-                        {/* <CardActions>
-                            <Button size="small" onClick={() => goToProfile(authr.id)}>Visit Author's Page</Button>
-                        </CardActions> */}
+                        <CardActions>
+                            <Button size="small">Visit Author's Page</Button>
+                        </CardActions>
                     </Card>
                 )}
                 {/* <Typography

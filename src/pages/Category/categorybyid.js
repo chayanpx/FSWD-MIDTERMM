@@ -9,42 +9,38 @@ import { CardMedia, Container } from "@mui/material";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 
-function Category() {
-    const [categories, setCategories] = useState([])
-
-    const goToPost = (id) => {
-        window.location = `/categories/${id}`
-    }
+function CategoryById() {
+    const [categoryByID, setCategoryByID] = useState([])
 
     useEffect(() => {
-        const fetchCategory = async () => {
-            const cateRes = await fetch('https://fswd-wp.devnss.com/wp-json/wp/v2/categories')
-            const catagory = await cateRes.json()
-            setCategories(catagory)
-            return catagory
+        const fetchCategoryById = async () => {
+            const splitUrl = window.location.href.split('/')
+            const id = parseInt(splitUrl[4])
+            const cateRes = await fetch(`https://fswd-wp.devnss.com/wp-json/wp/v2/categories/${id}`)
+            const catebyid = await cateRes.json()
+            setCategoryByID(catebyid)
+            return catebyid
         }
-        fetchCategory()
-        console.log(categories)
+        fetchCategoryById()
+        console.log(categoryByID)
     }, []);
 
     return (
         <Container>
             <Grid justifyContent='center'>
-                {categories.map((cate, index) =>
+                {categoryByID.map((cate, index) =>
                     <Card key={index} sx={{ margin: '20px', minWidth: 270 }}>
                         <CardContent>
                             <Typography variant="h5" component="div">
+                                {cate.id}
+                            </Typography>
+                            <Typography sx={{ mb: 1.5 }} color="text.secondary">
                                 {cate.name}
                             </Typography>
                         </CardContent>
-                        <CardActions>
-                            <Button 
-                                size="small" 
-                                onClick={() => goToPost(cate.id)}
-                            >
-                                Click here or wherever
-                            </Button>
-                        </CardActions>
+                        {/* <CardActions>
+                            <Button size="small" onClick={() => goToProfile(authr.id)}>Visit Author's Page</Button>
+                        </CardActions> */}
                     </Card>
                 )}
                 {/* <Typography
@@ -60,4 +56,4 @@ function Category() {
     )
 }
 
-export default Category;
+export default CategoryById

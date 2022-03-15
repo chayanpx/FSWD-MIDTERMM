@@ -11,9 +11,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-const pages = ['home', 'content', 'category', 'author'];
+const pages = ['home', 'content', 'categories', 'author'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -85,21 +85,17 @@ const ResponsiveAppBar = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                    >
-                        LOGO
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
+                        {/* <NavLink to="/">Home</NavLink>
+                        <NavLink to="/content">Content</NavLink>
+                        <NavLink to="/categories">Category</NavLink>
+                        <NavLink to="/author">Authors</NavLink> */}
                         {pages.map((page, index) => (
                             <Button
                                 key={page}
                                 onClick={() => handleCloseNavMenu && setSelectedPage(page)}
                                 component={Link}
-                                to={index === 0 ? page.replaceAll(' ', '') : page}
+                                to={index === 0 ? page.replace('home', '/') : page}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             > 
                                 {page}
