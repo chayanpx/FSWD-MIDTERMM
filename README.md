@@ -1,15 +1,18 @@
-# FSWD-MIDTERM-mini-project
+# FSWD-MIDTERM-MINI-PROJECT
 
-## Before Anything
+[Visit CBLOG-CMS](https://cblog-cms.web.app)
 
-`yarn install`
+### How to run
 
-or
+```
+git clone https://github.com/chayanpx/FSWD-MIDTERMM.git
+```
+```
+yarn install
+```
+```
+yarn start
+```
 
-`yarn`
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
-## After That
-
-`yarn start`
-
-Then open [http://localhost:3000](http://localhost:3000)
